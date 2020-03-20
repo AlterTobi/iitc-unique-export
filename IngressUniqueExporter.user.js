@@ -2,7 +2,7 @@
 // @id             iitc-plugin-uniqueinfo-exporter@c-schmitz
 // @name           IITC plugin: Unique Info Import/Export
 // @category       Misc
-// @version        0.0.0.3
+// @version        0.0.0.4
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
 // @updateURL      https://github.com/c-schmitz/iitc-unique-export/raw/master/IngressUniqueExporter.user.js
 // @downloadURL    https://github.com/c-schmitz/iitc-unique-export/raw/master/IngressUniqueExporter.user.js
@@ -51,7 +51,7 @@ function wrapper() {
         }).parent();
         $(".ui-dialog-buttonpane", dialog).remove();
         // width first, then centre
-        dialog.css("width", 600).css({
+        dialog.css("width", 300).css({
             "top": ($(window).height() - dialog.height()) / 2,
             "left": ($(window).width() - dialog.width()) / 2
         });
