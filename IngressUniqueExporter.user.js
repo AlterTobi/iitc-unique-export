@@ -39,12 +39,15 @@ function wrapper() {
              if (aPortal.visited) visited++;
              if (aPortal.captured) captured++;
       });
-      sExportUniqueJSON=JSON.stringify(window.plugin.uniques.uniques,null,4);
+      var sExportUniqueJSON=JSON.stringify(window.plugin.uniques.uniques,null,4);
+      var oBlob = new Blob([sExportUniqueJSON], { type: "text/plain" });
+      var oUrl = window.URL.createObjectURL(oBlob);
 
         var dialog = window.dialog({
             title: "Ingress unique visits/captures JSON export",
             html: '<span>Find all of your visited/captured portals as JSON below (visited: '+visited+' - captured: '+captured+'):</span>'
             + '<textarea id="taUCExportImport" style="width: 570px; height: ' + ($(window).height() - 230) + 'px; margin-top: 5px;"></textarea><a onclick=\"window.plugin.uniqueinfo.save();\" title=\"Save unique UV/UC info to IITC.\">Save</a>'
+            + ' | <a id="downloadLink" download="backup.txt">Export</a>'
         }).parent();
         $(".ui-dialog-buttonpane", dialog).remove();
         // width first, then centre
@@ -53,6 +56,8 @@ function wrapper() {
             "left": ($(window).width() - dialog.width()) / 2
         });
         $("#taUCExportImport").val(sExportUniqueJSON);
+        var elLink = document.getElementById("downloadLink");
+        elLink.href = oUrl;
         return dialog;
     }
     // setup function called by IITC
